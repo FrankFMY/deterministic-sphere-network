@@ -1,0 +1,61 @@
+{
+  "name": "deterministic-sphere-network",
+  "version": "0.1.0",
+  "description": "Seeded Fibonacci-sphere proximity graphs and GPU-ready typed buffers with bounded deterministic topology.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Artem Prianishnikov",
+    "url": "https://github.com/FrankFMY"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrankFMY/deterministic-sphere-network.git"
+  },
+  "homepage": "https://github.com/FrankFMY/deterministic-sphere-network#readme",
+  "bugs": {
+    "url": "https://github.com/FrankFMY/deterministic-sphere-network/issues"
+  },
+  "keywords": [
+    "graph",
+    "fibonacci-sphere",
+    "procedural-generation",
+    "webgl",
+    "typed-arrays",
+    "deterministic"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "oxlint --deny-warnings src tests",
+    "prepare": "npm run build",
+    "test": "vitest run",
+    "pack:check": "npm pack --dry-run"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "oxlint": "^1.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^6.0.0",
+    "vitest": "^3.0.0"
+  }
+}
