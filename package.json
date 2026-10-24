@@ -1,11 +1,12 @@
 {
   "name": "deterministic-sphere-network",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Seeded Fibonacci-sphere proximity graphs and GPU-ready typed buffers with bounded deterministic topology.",
   "type": "module",
   "license": "MIT",
   "author": {
     "name": "Artem Prianishnikov",
+    "email": "Pryanishnikovartem@gmail.com",
     "url": "https://github.com/FrankFMY"
   },
   "repository": {
@@ -30,7 +31,9 @@
   "files": [
     "dist",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "SECURITY.md",
+    "CHANGELOG.md"
   ],
   "exports": {
     ".": {
@@ -49,7 +52,8 @@
     "lint": "oxlint --deny-warnings src tests",
     "prepare": "npm run build",
     "test": "vitest run",
-    "pack:check": "npm pack --dry-run"
+    "pack:check": "npm pack --dry-run",
+    "package:check": "node scripts/verify-package-contract.mjs"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

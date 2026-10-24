@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+- Qualify actual installed deterministic buffers, topology/degree/packet invariants and TypeScript contracts.
+- Include security/changelog distribution docs and verified contact/package metadata.
+- Clarify numeric-runtime reproducibility and sorting complexity; generator behavior is unchanged.
+
 ## 0.1.0 — 2026-08-26
 
 - Added seeded Fibonacci-sphere nodes with deterministic jitter and tier assignment.

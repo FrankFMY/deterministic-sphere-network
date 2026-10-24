@@ -18,7 +18,7 @@ From the built GitHub release asset:
 npm install https://github.com/FrankFMY/deterministic-sphere-network/releases/download/v0.1.0/deterministic-sphere-network-0.1.0.tgz
 ```
 
-After a registry release:
+The npm release is pending maintainer approval:
 
 ```bash
 npm install deterministic-sphere-network
@@ -38,8 +38,8 @@ const graph = generateSphereNetwork({
   seed: 42,
 });
 
-renderer.uploadPositions(graph.nodePositions);
-renderer.uploadEdges(graph.edgeStarts, graph.edgeEnds);
+console.log(graph.nodePositions.length); // 1536
+console.log(graph.edgeCount); // generated undirected edges
 ```
 
 The same complete configuration always produces byte-identical typed-array values on the same JavaScript numeric runtime.
@@ -57,7 +57,7 @@ The same complete configuration always produces byte-identical typed-array value
 
 ## Safety and complexity bounds
 
-Generation uses an O(n²) exact neighbor search. To keep accidental UI/server inputs bounded, the public contract rejects:
+Generation uses an O(n²) exact neighbor search with per-node candidate sorting (O(n² log n) worst-case total time). To keep accidental UI/server inputs bounded, the public contract rejects:
 
 - more than 4,096 nodes;
 - degree caps above 32;
@@ -67,11 +67,13 @@ Generation uses an O(n²) exact neighbor search. To keep accidental UI/server in
 - non-integer seeds/counts;
 - packets when no edge can be generated.
 
-Zero-node and one-node configurations are valid when `packetCount` is zero. Unlike the original product-local generator, the one-node case cannot produce NaN and packet indices cannot silently point to a nonexistent edge.
+Zero-node and one-node configurations are valid when `packetCount` is zero. The one-node case remains finite, and packet indices cannot silently point to a nonexistent edge.
 
 ## Boundaries
 
 This package generates topology and typed data only. It does not include rendering, shaders, animation loops, scene lifecycle, pointer interaction, layout controls, or Three.js/Svelte adapters.
+
+Runtime: ESM on Node.js 20+. Reproducibility is scoped to the same numeric runtime, not guaranteed across engines. [npm package](https://www.npmjs.com/package/deterministic-sphere-network). Until approval, the existing release asset above is usable; for this candidate run `npm ci && npm run build && npm pack` in a source checkout.
 
 ## Development
 
@@ -83,11 +85,19 @@ npm run check
 npm test
 npm run build
 npm run pack:check
+npm run package:check
 ```
 
 ## Author
 
 **Artem Prianishnikov** — [FrankFMY](https://github.com/FrankFMY)
+
+- Website: https://frankfmy.com
+- Email: Pryanishnikovartem@gmail.com · frankfmy@proton.me
+- Telegram: https://t.me/FrankFMY
+- LinkedIn: https://www.linkedin.com/in/frankfmy/
+- X: https://x.com/FrankFMY
+- npm: https://www.npmjs.com/~frankfmy
 
 ## License
 
